@@ -24,4 +24,14 @@ public class MyTest extends BaseTest{
         GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
         assertFalse(groupPage.checkAccessByAge());
     }
+
+    @Test
+    void adultUserCheckGroup() {
+        LoginPage loginPage = new LoginPage(seleniumUtilities);
+        MainPage mainPage = loginPage.login(TEST_USER);
+        SettingsPage settingsPage = mainPage.receiveSettingsPage();
+        settingsPage.setBirthdayYear(2000);
+        GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
+        assertTrue(groupPage.checkAccessByAge());
+    }
 }
