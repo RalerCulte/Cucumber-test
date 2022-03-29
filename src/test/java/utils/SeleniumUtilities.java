@@ -21,19 +21,14 @@ public class SeleniumUtilities {
         this.driver = driver;
     }
 
-
-    /**
-     * Wait for an element to be displayed in the DOM
-     */
-
     public WebElement waitForElement(By xpath) {
         WebElement webElement = null;
-        int timeout = 10; //in seconds
+        int timeout = 10;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         try {
             webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
-        } catch (WebDriverException e) {
-            //do nothing, don't want to log this
+        } catch (WebDriverException ignore) {
+
         }
 
         if (webElement == null) {
@@ -47,16 +42,15 @@ public class SeleniumUtilities {
 
     public WebElement waitForElementPrescence(String xpath) {
         WebElement webElement = null;
-        int timeout = 10; //in seconds
+        int timeout = 10;
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         try {
             webElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
-        } catch (WebDriverException e) {
-            //do nothing, don't want to log this
+        } catch (WebDriverException ignore) {
+
         }
 
-        //if element wasn't found -> fail test
         if (webElement == null) {
             fail("WebElement not found within " +
                     timeout + " seconds. Failing test!" + " of element: " +
@@ -68,16 +62,16 @@ public class SeleniumUtilities {
     public void postGroupUrl(String url) {
         try {
             driver.get(GROUP_URL + url);
-        } catch (WebDriverException e) {
-            e.printStackTrace();
+        } catch (WebDriverException ignore) {
+
         }
     }
 
     public void postMainUrl() {
         try {
             driver.get(MAIN_URL);
-        } catch (WebDriverException e) {
-            e.printStackTrace();
+        } catch (WebDriverException ignore) {
+
         }
     }
 
@@ -85,8 +79,8 @@ public class SeleniumUtilities {
         WebElement webElement = waitForElement(xpath);
         try {
             webElement.click();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception ignore) {
+
         }
     }
 
@@ -96,16 +90,11 @@ public class SeleniumUtilities {
         webElement.sendKeys(text);
     }
 
-    /**
-     * Method to wait for page to update following an action that changes the pages state.
-     * This is needed to avoid any race conditions between page updates and Selenium, which can sometimes occur.
-     */
-
     public void waitForPageLoad() {
         try {
             Thread.sleep(250);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException ignore) {
+
         }
     }
 
