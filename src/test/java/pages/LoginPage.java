@@ -9,15 +9,14 @@ import utils.SeleniumUtilities;
 import utils.User;
 
 public class LoginPage extends Page {
-    private static final String EMAIL_INPUT_XPATH = "//input[@id='field_email']";
-    private static final String PASSWORD_INPUT_XPATH = "//input[@id='field_password']";
-    private static final String AUTH_BTN_XPATH = "//*[@class='login-form-actions']//input[@data-l='t,sign_in']";
-    private static final String URL = "https://ok.ru";
+    private static final By EMAIL_INPUT_XPATH = By.xpath("//input[@id='field_email']");
+    private static final By PASSWORD_INPUT_XPATH = By.xpath("//input[@id='field_password']");
+    private static final By AUTH_BTN_XPATH = By.xpath("//*[@class='login-form-actions']//input[@data-l='t,sign_in']");
 
 
     public LoginPage(SeleniumUtilities seleniumUtilities) {
         super(seleniumUtilities);
-        seleniumUtilities.postUrl(URL);
+        seleniumUtilities.postMainUrl();
     }
 
     @Override

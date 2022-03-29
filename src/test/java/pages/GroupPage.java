@@ -1,19 +1,21 @@
 package pages;
 
+import org.openqa.selenium.By;
+
 import utils.SeleniumUtilities;
 
 public class GroupPage extends Page {
 
-    private static final String GROUP_URL = "https://ok.ru/group/";
+    private static final String BLOCK = "18+";
 
     public GroupPage(SeleniumUtilities seleniumUtilities, String groupId) {
         super(seleniumUtilities);
-        seleniumUtilities.postUrl(GROUP_URL + groupId);
+        seleniumUtilities.postGroupUrl(groupId);
     }
 
     public boolean checkAccessByAge() {
-        String text = seleniumUtilities.getElementText("//*[contains(@class,'stub-empty')]//*[@class='stub-empty_t']");
-        return !text.contains("18+");
+        String text = seleniumUtilities.getElementText(By.xpath("//*[contains(@class,'stub-empty')]//*[@class='stub-empty_t']"));
+        return !text.contains(BLOCK);
     }
 
     @Override

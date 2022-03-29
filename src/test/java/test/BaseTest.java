@@ -7,12 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import utils.SeleniumUtilities;
 
-import java.util.Calendar;
-
 public class BaseTest {
-    protected static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
-    protected static final int MINOR_USER_YEAR = CURRENT_YEAR - 16;
-    protected static final int ADULT_USER_YEAR = CURRENT_YEAR - 20;
+
+    private static final String BASE_URL = "https://ok.ru/";
+
     protected WebDriver driver;
     protected SeleniumUtilities seleniumUtilities;
 
@@ -24,11 +22,13 @@ public class BaseTest {
     @BeforeEach
     void setUp() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get(BASE_URL);
         seleniumUtilities = new SeleniumUtilities(driver);
     }
 
     @AfterEach
-    void close() {
-        driver.close();
+    void quit() {
+        driver.quit();
     }
 }

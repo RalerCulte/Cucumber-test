@@ -10,26 +10,30 @@ import utils.User;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MyTest extends BaseTest {
+public class GroupAccessTest extends BaseTest {
     private static final User TEST_USER = new User("SECURE", "");
     private static final String TEST_ID_GROUP_FOR_ADULT = "64262221398255";
 
     @Test
-    void minorUserCheckGroup() {
+    void accessCheck() {
+        minorUserCheckGroup();
+        adultUserCheckGroup();
+    }
+
+    private void minorUserCheckGroup() {
         LoginPage loginPage = new LoginPage(seleniumUtilities);
         MainPage mainPage = loginPage.login(TEST_USER);
         SettingsPage settingsPage = mainPage.receiveSettingsPage();
-        settingsPage.setBirthdayYear(MINOR_USER_YEAR);
+        settingsPage.setBirthdayYear(Year.MINOR_YEAR.getYear());
         GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
         assertFalse(groupPage.checkAccessByAge());
     }
 
-    @Test
-    void adultUserCheckGroup() {
+    private void adultUserCheckGroup() {
         LoginPage loginPage = new LoginPage(seleniumUtilities);
         MainPage mainPage = loginPage.login(TEST_USER);
         SettingsPage settingsPage = mainPage.receiveSettingsPage();
-        settingsPage.setBirthdayYear(ADULT_USER_YEAR);
+        settingsPage.setBirthdayYear(Year.ADULT_YEAR.getYear());
         GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
         assertTrue(groupPage.checkAccessByAge());
     }

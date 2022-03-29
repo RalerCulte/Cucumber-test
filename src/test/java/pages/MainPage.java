@@ -1,9 +1,11 @@
 package pages;
 
+import org.openqa.selenium.By;
+
 import utils.SeleniumUtilities;
 
 public class MainPage extends Page {
-    private static final String SETTINGS_BTN_XPATH = "//*[@data-l='outlandertarget,USER_EDIT_CONFIG,t,USER_EDIT_CONFIG']";
+    private static final By SETTINGS_BTN_XPATH = By.xpath("//*[@data-l='outlandertarget,USER_EDIT_CONFIG,t,USER_EDIT_CONFIG']");
 
 
     public MainPage(SeleniumUtilities seleniumUtilities) {

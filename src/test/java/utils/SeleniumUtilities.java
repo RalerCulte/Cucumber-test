@@ -10,7 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumUtilities {
-    private WebDriver driver;
+
+    private static final String MAIN_URL = "https://ok.ru";
+    private static final String GROUP_URL = "https://ok.ru/group/";
+
+    private final WebDriver driver;
 
 
     public SeleniumUtilities(WebDriver driver) {
@@ -22,12 +26,12 @@ public class SeleniumUtilities {
      * Wait for an element to be displayed in the DOM
      */
 
-    public WebElement waitForElement(String xpath) {
+    public WebElement waitForElement(By xpath) {
         WebElement webElement = null;
         int timeout = 10; //in seconds
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         try {
-            webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
         } catch (WebDriverException e) {
             //do nothing, don't want to log this
         }
@@ -61,24 +65,32 @@ public class SeleniumUtilities {
         return webElement;
     }
 
-    public void postUrl(String url) {
+    public void postGroupUrl(String url) {
         try {
-            driver.get(url);
+            driver.get(GROUP_URL + url);
         } catch (WebDriverException e) {
-
+            e.printStackTrace();
         }
     }
 
-    public void click(String xpath) {
+    public void postMainUrl() {
+        try {
+            driver.get(MAIN_URL);
+        } catch (WebDriverException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void click(By xpath) {
         WebElement webElement = waitForElement(xpath);
         try {
             webElement.click();
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
     }
 
-    public void enterText(String xpath, String text) {
+    public void enterText(By xpath, String text) {
         WebElement webElement = waitForElement(xpath);
         webElement.clear();
         webElement.sendKeys(text);
@@ -106,7 +118,7 @@ public class SeleniumUtilities {
         return driver.getCurrentUrl();
     }
 
-    public String getElementText(String xpath) {
+    public String getElementText(By xpath) {
         WebElement webElement = waitForElement(xpath);
         return webElement.getText();
     }
