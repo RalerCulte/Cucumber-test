@@ -13,6 +13,7 @@ public class SeleniumUtilities {
 
     private static final String MAIN_URL = "https://ok.ru";
     private static final String GROUP_URL = "https://ok.ru/group/";
+    private static final String PROFILE_URL = "https://ok.ru/profile/";
 
     private final WebDriver driver;
 
@@ -62,6 +63,14 @@ public class SeleniumUtilities {
     public void postGroupUrl(String url) {
         try {
             driver.get(GROUP_URL + url);
+        } catch (WebDriverException ignore) {
+
+        }
+    }
+
+    public void postProfileUrl(String url) {
+        try {
+            driver.get(PROFILE_URL + url);
         } catch (WebDriverException ignore) {
 
         }
