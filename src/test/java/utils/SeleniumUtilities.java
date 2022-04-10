@@ -1,5 +1,7 @@
 package utils;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -24,8 +26,7 @@ public class SeleniumUtilities {
 
     public WebElement waitForElement(By xpath) {
         WebElement webElement = null;
-        int timeout = 10;
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
         } catch (WebDriverException ignore) {
@@ -34,7 +35,7 @@ public class SeleniumUtilities {
 
         if (webElement == null) {
             fail("WebElement not found within " +
-                    timeout + " seconds. Failing test!" + " of element: " +
+                    10 + " seconds. Failing test!" + " of element: " +
                     xpath + "\nCurrent page: " + driver.getCurrentUrl());
         }
         return webElement;
@@ -43,8 +44,7 @@ public class SeleniumUtilities {
 
     public WebElement waitForElementPrescence(String xpath) {
         WebElement webElement = null;
-        int timeout = 10;
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             webElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
@@ -54,7 +54,7 @@ public class SeleniumUtilities {
 
         if (webElement == null) {
             fail("WebElement not found within " +
-                    timeout + " seconds. Failing test!" + " of element: " +
+                    10 + " seconds. Failing test!" + " of element: " +
                     xpath + "\nCurrent page: " + driver.getCurrentUrl());
         }
         return webElement;
