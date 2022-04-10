@@ -1,5 +1,6 @@
 package test;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,10 +13,12 @@ import utils.User;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("Checking age limits in groups")
 public class GroupAccessTest extends BaseTest {
     private static final User TEST_USER = new User("SECURE", "");
     private static final String TEST_ID_GROUP_FOR_ADULT = "64262221398255";
 
+    @DisplayName("Before 18")
     @ParameterizedTest
     @ValueSource(ints = {2006, 2007, 2008})
     void minorUserCheckGroup(int year) {
@@ -27,6 +30,7 @@ public class GroupAccessTest extends BaseTest {
         assertFalse(groupPage.checkAccessByAge());
     }
 
+    @DisplayName("After 18")
     @ParameterizedTest
     @ValueSource(ints = {1993, 1998, 2002})
     void adultUserCheckGroup(int year) {
