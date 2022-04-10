@@ -16,6 +16,7 @@ public class SeleniumUtilities {
     private static final String MAIN_URL = "https://ok.ru";
     private static final String GROUP_URL = "https://ok.ru/group/";
     private static final String PROFILE_URL = "https://ok.ru/profile/";
+    private static final int TIMEOUT = 10;
 
     private final WebDriver driver;
 
@@ -26,7 +27,7 @@ public class SeleniumUtilities {
 
     public WebElement waitForElement(By xpath) {
         WebElement webElement = null;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
         try {
             webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
         } catch (WebDriverException ignore) {
@@ -35,7 +36,7 @@ public class SeleniumUtilities {
 
         if (webElement == null) {
             fail("WebElement not found within " +
-                    10 + " seconds. Failing test!" + " of element: " +
+                    TIMEOUT + " seconds. Failing test!" + " of element: " +
                     xpath + "\nCurrent page: " + driver.getCurrentUrl());
         }
         return webElement;
@@ -44,7 +45,7 @@ public class SeleniumUtilities {
 
     public WebElement waitForElementPrescence(String xpath) {
         WebElement webElement = null;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
         try {
             webElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 
@@ -54,7 +55,7 @@ public class SeleniumUtilities {
 
         if (webElement == null) {
             fail("WebElement not found within " +
-                    10 + " seconds. Failing test!" + " of element: " +
+                    TIMEOUT + " seconds. Failing test!" + " of element: " +
                     xpath + "\nCurrent page: " + driver.getCurrentUrl());
         }
         return webElement;
