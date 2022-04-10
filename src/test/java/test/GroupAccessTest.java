@@ -17,7 +17,7 @@ public class GroupAccessTest extends BaseTest {
     private static final String TEST_ID_GROUP_FOR_ADULT = "64262221398255";
 
     @ParameterizedTest
-    @ValueSource(ints = {2007, 2008, 2009})
+    @ValueSource(ints = {2006, 2007, 2008})
     void minorUserCheckGroup(int year) {
         LoginPage loginPage = new LoginPage(seleniumUtilities);
         MainPage mainPage = loginPage.login(TEST_USER);
