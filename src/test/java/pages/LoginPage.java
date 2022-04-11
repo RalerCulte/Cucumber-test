@@ -20,9 +20,9 @@ public class LoginPage extends Page {
         return seleniumUtilities.getCurrentURL();
     }
 
-    public MainPage login(User user){
-        seleniumUtilities.enterText(EMAIL_INPUT_XPATH, user.login());
-        seleniumUtilities.enterText(PASSWORD_INPUT_XPATH, user.password());
+    public MainPage loginByPhone(User user) {
+        seleniumUtilities.enterText(EMAIL_INPUT_XPATH, user.getPhoneNumber());
+        seleniumUtilities.enterText(PASSWORD_INPUT_XPATH, user.getPassword());
         seleniumUtilities.click(AUTH_BTN_XPATH);
         return new MainPage(seleniumUtilities);
     }
