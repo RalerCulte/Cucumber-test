@@ -11,6 +11,7 @@ import utils.User;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+// TODO тесты не проходят из-за "//*[@data-l='outlandertarget,USER_EDIT_CONFIG,t,USER_EDIT_CONFIG']"
 @DisplayName("Checking age limits in groups")
 public class GroupAccessTest extends BaseTest {
     private static final User TEST_USER = new User.UserBuilder()
