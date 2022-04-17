@@ -15,6 +15,7 @@ public class LoginPage extends Page {
         seleniumUtilities.postMainUrl();
     }
 
+    // TODO неиспользуемый метод
     @Override
     public String getUrl() {
         return seleniumUtilities.getCurrentURL();
