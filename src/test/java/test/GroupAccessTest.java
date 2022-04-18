@@ -11,6 +11,7 @@ import utils.User;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+// TODO тесты не проходят из-за "//*[@data-l='outlandertarget,USER_EDIT_CONFIG,t,USER_EDIT_CONFIG']"
 @DisplayName("Checking age limits in groups")
 public class GroupAccessTest extends BaseTest {
     private static final User TEST_USER = new User.UserBuilder()
@@ -21,6 +22,7 @@ public class GroupAccessTest extends BaseTest {
 
     @DisplayName("Before 18")
     @ParameterizedTest
+    // TODO в 2024 тест сломается для 2006 г.р. :)
     @ValueSource(ints = {2006, 2007, 2008})
     void minorUserCheckGroup(int year) {
         LoginPage loginPage = new LoginPage(seleniumUtilities);
@@ -28,6 +30,8 @@ public class GroupAccessTest extends BaseTest {
         SettingsPage settingsPage = mainPage.receiveSettingsPage();
         settingsPage.setBirthdayYear(year);
         GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
+        // TODO сообщение в случае провала теста неинформативно,
+        //      предлагаю что-то типа "Access should be denied but was granted"
         assertWithMessage("Access denied").that(groupPage.checkAccessByAge()).isFalse();
     }
 
@@ -40,6 +44,8 @@ public class GroupAccessTest extends BaseTest {
         SettingsPage settingsPage = mainPage.receiveSettingsPage();
         settingsPage.setBirthdayYear(year);
         GroupPage groupPage = new GroupPage(seleniumUtilities, TEST_ID_GROUP_FOR_ADULT);
+        // TODO сообщение в случае провала теста неинформативно,
+        //      предлагаю что-то типа "Access should be granted but was denied"
         assertWithMessage("Access granted").that(groupPage.checkAccessByAge()).isTrue();
     }
 }

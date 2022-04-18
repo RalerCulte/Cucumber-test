@@ -8,9 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import utils.SeleniumUtilities;
 
 public class BaseTest {
-
+    // TODO дублируется с SeleniumUtilities.MAIN_URL
     private static final String BASE_URL = "https://ok.ru/";
 
+    // TODO нет нужды в protected, private подойдет лучше
     protected WebDriver driver;
     protected SeleniumUtilities seleniumUtilities;
 
@@ -24,11 +25,14 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(BASE_URL);
+        // TODO ...тогда driver можно было бы сделать локальной переменной и
+        //      скрыть от тестов за оберткой SeleniumUtilities
         seleniumUtilities = new SeleniumUtilities(driver);
     }
 
     @AfterEach
     void quit() {
+        // TODO было бы неплохо обернуть в SeleniumUtilities и этот метод тоже...
         driver.quit();
     }
 }

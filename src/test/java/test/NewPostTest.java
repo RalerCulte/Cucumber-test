@@ -28,6 +28,8 @@ public class NewPostTest extends BaseTest {
         MainPage mainPage = loginPage.loginByPhone(TEST_USER);
         PostPage postPage = mainPage.receivePostPage();
         postPage.selectBeachDesign();
+        // TODO тест после завершения не удаляет созданный пост, что стоит делать, так как иначе
+        //      каждый запуск теста становится неповторимым и единственным в своем роде
         postPage.sendPost(TEST_MESSAGE);
     }
 
