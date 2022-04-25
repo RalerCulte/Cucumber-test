@@ -12,6 +12,7 @@ public class SettingsPage extends Page {
         super(seleniumUtilities);
     }
 
+    // TODO неиспользуемый метод
     @Override
     public String getUrl() {
         return seleniumUtilities.getCurrentURL();
