@@ -12,19 +12,11 @@ public class MainPage extends Page {
         super(seleniumUtilities);
     }
 
-    // TODO неиспользуемый метод
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
-
-    // TODO может быть goToSettingsPage?
     public SettingsPage receiveSettingsPage() {
         seleniumUtilities.click(SETTINGS_BTN_XPATH);
         return new SettingsPage(seleniumUtilities);
     }
 
-    // TODO может быть goToPostPage?
     public PostPage receivePostPage() {
         seleniumUtilities.click(POST_LINE);
         return new PostPage(seleniumUtilities);

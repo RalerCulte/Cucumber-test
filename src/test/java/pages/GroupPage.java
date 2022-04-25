@@ -18,9 +18,4 @@ public class GroupPage extends Page {
         String text = seleniumUtilities.getElementText(age);
         return !text.contains(BLOCK);
     }
-
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
 }

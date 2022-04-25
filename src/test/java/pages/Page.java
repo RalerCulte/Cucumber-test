@@ -18,6 +18,4 @@ public abstract class Page {
         this.seleniumUtilities = seleniumUtilities;
     }
 
-    // TODO неиспользуемый метод
-    abstract public String getUrl();
 }

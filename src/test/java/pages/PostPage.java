@@ -16,12 +16,6 @@ public class PostPage extends Page {
         super(seleniumUtilities);
     }
 
-    // TODO неиспользуемый метод
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
-
     public PostPage selectBeachDesign() {
         seleniumUtilities.click(BEACH_DESIGN_BTN);
         return this;

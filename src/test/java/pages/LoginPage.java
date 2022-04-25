@@ -15,12 +15,6 @@ public class LoginPage extends Page {
         seleniumUtilities.postMainUrl();
     }
 
-    // TODO неиспользуемый метод
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
-
     public MainPage loginByPhone(User user) {
         seleniumUtilities.enterText(EMAIL_INPUT_XPATH, user.getPhoneNumber());
         seleniumUtilities.enterText(PASSWORD_INPUT_XPATH, user.getPassword());

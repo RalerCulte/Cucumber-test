@@ -12,12 +12,6 @@ public class SettingsPage extends Page {
         super(seleniumUtilities);
     }
 
-    // TODO неиспользуемый метод
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
-
     public void setBirthdayYear(int year) {
         seleniumUtilities.click(USER_SETTINGS_XPATH);
         seleniumUtilities.click(getBirthdayXpath(year));

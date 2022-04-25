@@ -15,11 +15,6 @@ public class ProfilePage extends Page {
         seleniumUtilities.postProfileUrl(userId);
     }
 
-    @Override
-    public String getUrl() {
-        return seleniumUtilities.getCurrentURL();
-    }
-
     public String getFirstPostStyleAttribute() {
         WebElement webElement = seleniumUtilities.waitForElement(FIRST_POST);
         return webElement.getAttribute("style");

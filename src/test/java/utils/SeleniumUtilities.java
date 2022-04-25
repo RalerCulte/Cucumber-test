@@ -20,7 +20,6 @@ public class SeleniumUtilities {
 
     private final WebDriver driver;
 
-
     public SeleniumUtilities(WebDriver driver) {
         this.driver = driver;
     }
