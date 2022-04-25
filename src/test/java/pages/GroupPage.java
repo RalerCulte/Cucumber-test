@@ -7,6 +7,7 @@ import utils.SeleniumUtilities;
 public class GroupPage extends Page {
 
     private static final String BLOCK = "18+";
+    private static final By age = By.xpath("//*[contains(@class,'stub-empty')]//*[@class='stub-empty_t']");
 
     public GroupPage(SeleniumUtilities seleniumUtilities, String groupId) {
         super(seleniumUtilities);
@@ -14,7 +15,7 @@ public class GroupPage extends Page {
     }
 
     public boolean checkAccessByAge() {
-        String text = seleniumUtilities.getElementText(By.xpath("//*[contains(@class,'stub-empty')]//*[@class='stub-empty_t']"));
+        String text = seleniumUtilities.getElementText(age);
         return !text.contains(BLOCK);
     }
 

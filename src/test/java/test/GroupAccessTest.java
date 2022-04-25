@@ -13,10 +13,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 @DisplayName("Checking age limits in groups")
 public class GroupAccessTest extends BaseTest {
-    private static final User TEST_USER = new User.UserBuilder()
-            .setPhoneNumber("+79019076733")
-            .setPassword("google_chrome")
-            .build();
+
     private static final String TEST_ID_GROUP_FOR_ADULT = "64262221398255";
 
     @DisplayName("Before 18")

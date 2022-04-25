@@ -15,10 +15,6 @@ public class ProfilePage extends Page {
         seleniumUtilities.postProfileUrl(userId);
     }
 
-    public ProfilePage(SeleniumUtilities seleniumUtilities) {
-        super(seleniumUtilities);
-    }
-
     @Override
     public String getUrl() {
         return seleniumUtilities.getCurrentURL();
@@ -39,8 +35,9 @@ public class ProfilePage extends Page {
         return Integer.parseInt(webElement.getText());
     }
 
-    public void likeFirstPost() {
+    public ProfilePage likeFirstPost() {
         WebElement webElement = seleniumUtilities.waitForElement(FIRST_POST_LIKES);
         webElement.click();
+        return this;
     }
 }

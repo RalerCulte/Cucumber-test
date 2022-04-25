@@ -3,7 +3,7 @@ package pages;
 import utils.SeleniumUtilities;
 
 public abstract class Page {
-    SeleniumUtilities seleniumUtilities;
+    protected final SeleniumUtilities seleniumUtilities;
 
     public Page(SeleniumUtilities seleniumUtilities) {
         this.seleniumUtilities = seleniumUtilities;

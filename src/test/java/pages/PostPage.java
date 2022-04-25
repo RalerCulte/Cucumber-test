@@ -21,16 +21,18 @@ public class PostPage extends Page {
         return seleniumUtilities.getCurrentURL();
     }
 
-    public void selectBeachDesign() {
+    public PostPage selectBeachDesign() {
         seleniumUtilities.click(BEACH_DESIGN_BTN);
+        return this;
+    }
+
+    public PostPage sendPost(String msg) {
+        enterPostMessage(msg);
+        seleniumUtilities.click(POST_BTN);
+        return this;
     }
 
     private void enterPostMessage(String msg) {
         seleniumUtilities.enterText(MESSAGE_FIELD_IN_POST, msg);
-    }
-
-    public void sendPost(String msg) {
-        enterPostMessage(msg);
-        seleniumUtilities.click(POST_BTN);
     }
 }

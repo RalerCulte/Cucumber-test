@@ -14,10 +14,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 @DisplayName("Check some field for post")
 public class NewPostTest extends BaseTest {
 
-    private static final User TEST_USER = new User.UserBuilder()
-            .setPhoneNumber("+79019076733")
-            .setPassword("google_chrome")
-            .build();
     private static final String TEST_MESSAGE = "TEST TEST TEST!!!!";
     private static final String USER_ID = "600587939102";
     private static final String SAND_COLOR_RGB = "rgb(247, 196, 67)";
@@ -27,8 +23,7 @@ public class NewPostTest extends BaseTest {
         LoginPage loginPage = new LoginPage(seleniumUtilities);
         MainPage mainPage = loginPage.loginByPhone(TEST_USER);
         PostPage postPage = mainPage.receivePostPage();
-        postPage.selectBeachDesign();
-        postPage.sendPost(TEST_MESSAGE);
+        postPage.selectBeachDesign().sendPost(TEST_MESSAGE);
     }
 
     @DisplayName("Check color for post")
@@ -52,8 +47,7 @@ public class NewPostTest extends BaseTest {
     void checkPostText() {
         ProfilePage profilePage = new ProfilePage(seleniumUtilities, USER_ID);
         int likeCount = profilePage.getLikeCount();
-        profilePage.likeFirstPost();
-        int likeCountAfterNewLike = profilePage.getLikeCount();
+        int likeCountAfterNewLike = profilePage.likeFirstPost().getLikeCount();
         assertWithMessage("Like success").that(likeCount).isLessThan(likeCountAfterNewLike);
     }
 }
