@@ -3,13 +3,14 @@ package pages;
 import org.openqa.selenium.By;
 import utils.SeleniumUtilities;
 
-public class MainPage extends Page {
+public class MainPage {
     private static final By SETTINGS_BTN_XPATH = By.xpath("//*[@data-l='outlandertarget,USER_EDIT_CONFIG,t,USER_EDIT_CONFIG']");
     private static final By POST_LINE = By.xpath("//*[contains(@class,'pf-head')]//a[@class='pf-head_itx_a']");
 
+    private final SeleniumUtilities seleniumUtilities;
 
     public MainPage(SeleniumUtilities seleniumUtilities) {
-        super(seleniumUtilities);
+        this.seleniumUtilities = seleniumUtilities;
     }
 
     public SettingsPage receiveSettingsPage() {

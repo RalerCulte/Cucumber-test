@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import utils.SeleniumUtilities;
 
-public class PostPage extends Page {
+public class PostPage {
     private static final By BEACH_DESIGN_BTN =
             By.xpath("//*[contains(@class,'posting_cp_i js-color-picker-i js-color-picker-i-90')]");
     private static final By MESSAGE_FIELD_IN_POST =
@@ -11,9 +11,10 @@ public class PostPage extends Page {
     private static final By POST_BTN =
             By.xpath("//*[@data-l='t,button.submit']");
 
+    private final SeleniumUtilities seleniumUtilities;
 
     public PostPage(SeleniumUtilities seleniumUtilities) {
-        super(seleniumUtilities);
+        this.seleniumUtilities = seleniumUtilities;
     }
 
     public PostPage selectBeachDesign() {
@@ -21,10 +22,9 @@ public class PostPage extends Page {
         return this;
     }
 
-    public PostPage sendPost(String msg) {
+    public void sendPost(String msg) {
         enterPostMessage(msg);
         seleniumUtilities.click(POST_BTN);
-        return this;
     }
 
     private void enterPostMessage(String msg) {

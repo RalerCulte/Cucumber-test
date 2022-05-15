@@ -4,15 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.SeleniumUtilities;
 
-public class ProfilePage extends Page {
+public class ProfilePage {
     private static final By FIRST_POST =
             By.xpath("//*[@data-l='fL,self']//*[1][@class='feed-w']//*[contains(@class,'media-block')]");
     private static final By FIRST_POST_LIKES =
             By.xpath("//*[@data-l='fL,self']//*[1][@class='feed-w']//*[@data-like-icon='like']//*[contains(@class,'widget_count')]");
 
-    public ProfilePage(SeleniumUtilities seleniumUtilities, String userId) {
-        super(seleniumUtilities);
-        seleniumUtilities.postProfileUrl(userId);
+    private final SeleniumUtilities seleniumUtilities;
+
+    public ProfilePage(SeleniumUtilities seleniumUtilities) {
+        this.seleniumUtilities = seleniumUtilities;
     }
 
     public String getFirstPostStyleAttribute() {

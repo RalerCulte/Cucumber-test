@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import utils.SeleniumUtilities;
-import utils.User;
 
 public class BaseTest {
     private static final String BASE_URL = "https://ok.ru/";
@@ -31,9 +30,4 @@ public class BaseTest {
     void quit() {
         driver.quit();
     }
-
-    protected static final User TEST_USER = new User.UserBuilder()
-            .setPhoneNumber("+79019076733")
-            .setPassword("google_chrome")
-            .build();
 }
