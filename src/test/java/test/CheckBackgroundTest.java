@@ -13,7 +13,7 @@ public class CheckBackgroundTest extends NewPostTest {
     @DisplayName("Check color for post")
     @Test
     void checkBackgroundForSandDesign() {
-        seleniumUtilities.postProfileUrl(USER_ID);
+//        seleniumUtilities.postProfileUrl(USER_ID);
         ProfilePage profilePage = new ProfilePage(seleniumUtilities);
         String style = profilePage.getFirstPostStyleAttribute();
         assertWithMessage("Colors equals").that(style).contains(SAND_COLOR_RGB);

@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumUtilities {
 
-    private static final String MAIN_URL = "https://ok.ru";
-    private static final String GROUP_URL = "https://ok.ru/group/";
-    private static final String PROFILE_URL = "https://ok.ru/profile/";
     private static final int TIMEOUT = 10;
 
     private final WebDriver driver;
@@ -41,16 +38,8 @@ public class SeleniumUtilities {
         return webElement;
     }
 
-    public void postGroupUrl(String url) {
-        driver.get(GROUP_URL + url);
-    }
-
-    public void postProfileUrl(String url) {
-        driver.get(PROFILE_URL + url);
-    }
-
-    public void postMainUrl() {
-        driver.get(MAIN_URL);
+    public void postUrl(String url) {
+        driver.get(url);
     }
 
     public void click(By xpath) {

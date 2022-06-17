@@ -23,12 +23,12 @@ public class MinorUserCheckGroupTest extends BaseTest {
                 .build();
         String groupId = "64262221398255";
 
-        seleniumUtilities.postMainUrl();
+        //seleniumUtilities.postUrl();
         LoginPage loginPage = new LoginPage(seleniumUtilities);
         MainPage mainPage = loginPage.loginByPhone(testUser);
         SettingsPage settingsPage = mainPage.receiveSettingsPage();
         settingsPage.setBirthdayYear(year);
-        seleniumUtilities.postGroupUrl(groupId);
+        //seleniumUtilities.postGroupUrl(groupId);
         GroupPage groupPage = new GroupPage(seleniumUtilities);
         assertWithMessage("Access should be denied but was granted").that(groupPage.checkAccessByAge()).isFalse();
     }

@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import utils.SeleniumUtilities;
 
-public class PostPage {
+public class PostPage implements Page{
     private static final By BEACH_DESIGN_BTN =
-            By.xpath("//*[contains(@class,'posting_cp_i js-color-picker-i js-color-picker-i-90')]");
+            By.xpath("//*[@data-decorator-id='90']");
     private static final By MESSAGE_FIELD_IN_POST =
             By.xpath("//*[@class='posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler']");
     private static final By POST_BTN =

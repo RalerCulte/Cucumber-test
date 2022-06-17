@@ -11,7 +11,7 @@ public class CheckPostTextTest extends NewPostTest {
     @DisplayName("Check post text")
     @Test
     void checkPostText() {
-        seleniumUtilities.postProfileUrl(USER_ID);
+        //seleniumUtilities.postProfileUrl(USER_ID);
         ProfilePage profilePage = new ProfilePage(seleniumUtilities);
         int likeCount = profilePage.getLikeCount();
         int likeCountAfterNewLike = profilePage.likeFirstPost().getLikeCount();

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import utils.SeleniumUtilities;
 
-public class GroupPage {
+public class GroupPage implements Page{
 
     private static final String BLOCK = "18+";
     private static final By age = By.xpath("//*[contains(@class,'stub-empty')]//*[@class='stub-empty_t']");
