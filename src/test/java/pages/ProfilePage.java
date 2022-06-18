@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.SeleniumUtilities;
 
-public class ProfilePage implements Page{
+public class ProfilePage implements Page {
     private static final By FIRST_POST =
-            By.xpath("//div[@class='media-status_cnt']//*[contains(@class, 'media-block media-text')][1]");
+            By.xpath("((//div[contains(@class, 'feed-w')])[1]//*[contains(@class, 'media-block media-text')])[1]");
     private static final By FIRST_POST_LIKES =
             By.xpath("//*[@data-l='fL,self']//*[1][@class='feed-w']//*[@data-like-icon='like']//*[contains(@class,'widget_count')]");
 
@@ -18,6 +18,7 @@ public class ProfilePage implements Page{
 
     public String getFirstPostStyleAttribute() {
         WebElement webElement = seleniumUtilities.waitForElement(FIRST_POST);
+
         return webElement.getAttribute("style");
     }
 

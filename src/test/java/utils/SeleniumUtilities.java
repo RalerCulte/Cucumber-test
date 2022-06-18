@@ -1,13 +1,12 @@
 package utils;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -22,14 +21,9 @@ public class SeleniumUtilities {
     }
 
     public WebElement waitForElement(By xpath) {
-        WebElement webElement = null;
+        WebElement webElement;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
-        try {
-            webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
-        } catch (WebDriverException ignore) {
-
-        }
-
+        webElement = wait.until(ExpectedConditions.visibilityOfElementLocated(xpath));
         if (webElement == null) {
             fail("WebElement not found within " +
                     TIMEOUT + " seconds. Failing test!" + " of element: " +
@@ -40,6 +34,7 @@ public class SeleniumUtilities {
 
     public void postUrl(String url) {
         driver.get(url);
+        driver.navigate().refresh();
     }
 
     public void click(By xpath) {
@@ -48,13 +43,9 @@ public class SeleniumUtilities {
     }
 
     public void enterText(By xpath, String text) {
-        WebElement webElement = waitForElement(xpath);
-        webElement.clear();
-        webElement.sendKeys(text);
-    }
-
-    public String getCurrentURL() {
-        return driver.getCurrentUrl();
+        WebElement enterElement = waitForElement(xpath);
+        enterElement.clear();
+        enterElement.sendKeys(text);
     }
 
     public String getElementText(By xpath) {

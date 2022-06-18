@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import utils.SeleniumUtilities;
 
-public class PostPage implements Page{
+public class PostPage implements Page {
     private static final By BEACH_DESIGN_BTN =
             By.xpath("//*[@data-decorator-id='90']");
     private static final By MESSAGE_FIELD_IN_POST =

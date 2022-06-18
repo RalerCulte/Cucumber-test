@@ -1,14 +1,9 @@
 package stepdefs;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.GroupPage;
-import pages.LoginPage;
-import pages.MainPage;
-import pages.Page;
-import pages.SettingsPage;
+import pages.*;
 import stepdefs.exceptions.PageStateException;
 import utils.SeleniumUtilities;
 import utils.User;
@@ -16,13 +11,8 @@ import utils.User;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 public class CheckAdultUserStepdefs {
+    private final SeleniumUtilities seleniumUtilities = SeleniumUtilitiesController.getSeleniumUtilities();
     private Page page;
-    private SeleniumUtilities seleniumUtilities;
-
-    @Before
-    public void before() {
-        seleniumUtilities = Prepare.before();
-    }
 
     @When("Войти в аккаунт с логином {string} и паролем {string}")
     public void войтиВАккаунтСЛогиномИПаролем(String arg0, String arg1) throws PageStateException {
@@ -74,8 +64,8 @@ public class CheckAdultUserStepdefs {
                 .isFalse();
     }
 
-    /*@After
+    @After
     public void after() {
-        Prepare.after();
-    }*/
+        SeleniumUtilitiesController.close();
+    }
 }

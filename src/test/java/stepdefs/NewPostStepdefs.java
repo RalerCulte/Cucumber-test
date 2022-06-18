@@ -1,13 +1,11 @@
 package stepdefs;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.ru.Допустим;
 import io.cucumber.java.ru.Тогда;
 import pages.LoginPage;
 import pages.MainPage;
 import pages.Page;
-import pages.PostPage;
 import pages.ProfilePage;
 import stepdefs.exceptions.PageStateException;
 import utils.SeleniumUtilities;
@@ -16,16 +14,9 @@ import utils.User;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 public class NewPostStepdefs {
-    private static final String SAND_COLOR_RGB = "rgb(247, 196, 67)";
-    private String currentText;
 
+    private final SeleniumUtilities seleniumUtilities = SeleniumUtilitiesController.getSeleniumUtilities();
     private Page page;
-    private SeleniumUtilities seleniumUtilities;
-
-    @Before
-    public void before() {
-        seleniumUtilities = Prepare.before();
-    }
 
     @Допустим("Авторизация с логином {string} и паролем {string}")
     public void АвторизацияСЛогиномИПаролем(String arg0, String arg1) throws PageStateException {
@@ -38,8 +29,8 @@ public class NewPostStepdefs {
                 .build();
 
         seleniumUtilities.postUrl(MainPage.URL);
-        LoginPage loginPage = new LoginPage(seleniumUtilities);
-        page = loginPage.loginByPhone(testUser);
+        page = new LoginPage(seleniumUtilities)
+                .loginByPhone(testUser);
     }
 
     @Тогда("Публикация нового поста с текстом {string} и пляжем на фоне")
@@ -47,32 +38,38 @@ public class NewPostStepdefs {
         if (!(page instanceof MainPage mainPage)) {
             throw new PageStateException("Для публикации поста нужно находиться на главном экране");
         }
-
-        currentText = arg0;
-        PostPage postPage = mainPage.receivePostPage();
-        postPage.selectBeachDesign().sendPost(arg0);
+        mainPage.receivePostPage()
+                .selectBeachDesign()
+                .sendPost(arg0);
     }
 
-    @Тогда("Проверить соответствие фона")
-    public void проверитьСоответствиеФона() {
+
+    @Тогда("Проверить что последний пост профиля {string} имеет цвет rgb\\({string})")
+    public void проверитьЧтоПоследнийПостПрофиляИмеетЦветRgb(String arg0, String arg1) {
+        seleniumUtilities.postUrl(arg0);
         ProfilePage profilePage = new ProfilePage(seleniumUtilities);
-        String style = profilePage.getFirstPostStyleAttribute();
-        assertWithMessage("Colors equals").that(style).contains(SAND_COLOR_RGB);
+        String style = profilePage
+                .getFirstPostStyleAttribute();
+        page = profilePage;
+        assertWithMessage("Colors equals")
+                .that(style)
+                .contains("rgb(" + arg1 + ")");
     }
 
-    @Тогда("Проверить соответствие текста")
-    public void проверитьСоответствиеТекста() throws PageStateException {
-        if (currentText == null) {
-            throw new PageStateException("Пост должен содержать текст");
-        }
-
+    @Тогда("Проверить что последний пост профиля {string} имеет текст {string}")
+    public void проверитьЧтоПоследнийПостПрофиляИмеетТекст(String arg0, String arg1) {
+        seleniumUtilities.postUrl(arg0);
         ProfilePage profilePage = new ProfilePage(seleniumUtilities);
-        String firstPostText = profilePage.getFirstPostText();
-        assertWithMessage("TestMessage equals").that(firstPostText).contains(currentText);
+        String firstPostText = profilePage
+                .getFirstPostText();
+        page = profilePage;
+        assertWithMessage("TestMessage equals")
+                .that(firstPostText)
+                .contains(arg1);
     }
 
     @After
     public void after() {
-        Prepare.after();
+        SeleniumUtilitiesController.close();
     }
 }
