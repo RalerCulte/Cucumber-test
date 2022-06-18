@@ -4,37 +4,28 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.*;
+import pages.GroupPage;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.Page;
+import pages.SettingsPage;
+import stepdefs.exceptions.PageStateException;
 import utils.SeleniumUtilities;
 import utils.User;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
 public class CheckAdultUserStepdefs {
-    protected WebDriver driver;
-    protected SeleniumUtilities seleniumUtilities;
-    private static final String BASE_URL = "https://ok.ru/";
-
     private Page page;
+    private SeleniumUtilities seleniumUtilities;
 
     @Before
     public void before() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(BASE_URL);
-        seleniumUtilities = new SeleniumUtilities(driver);
+        seleniumUtilities = Prepare.before();
     }
 
-    @After
-    public void after() {
-        driver.quit();
-    }
-
-    @When("Ввойти в аккаунт с логином {string} и паролем {string}")
-    public void ввойтиВАккаунтСЛогиномИПаролем(String arg0, String arg1) throws PageStateException {
+    @When("Войти в аккаунт с логином {string} и паролем {string}")
+    public void войтиВАккаунтСЛогиномИПаролем(String arg0, String arg1) throws PageStateException {
         if (page != null) {
             throw new PageStateException("Данный метод должен вызываться перед всеми остальными");
         }
@@ -82,4 +73,9 @@ public class CheckAdultUserStepdefs {
                 .that(groupPage.checkAccessByAge())
                 .isFalse();
     }
+
+    /*@After
+    public void after() {
+        Prepare.after();
+    }*/
 }

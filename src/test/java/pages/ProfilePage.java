@@ -6,7 +6,7 @@ import utils.SeleniumUtilities;
 
 public class ProfilePage implements Page{
     private static final By FIRST_POST =
-            By.xpath("//*[@data-l='fL,self']//*[1][@class='feed-w']//*[contains(@class,'media-block')]");
+            By.xpath("//div[@class='media-status_cnt']//*[contains(@class, 'media-block media-text')][1]");
     private static final By FIRST_POST_LIKES =
             By.xpath("//*[@data-l='fL,self']//*[1][@class='feed-w']//*[@data-like-icon='like']//*[contains(@class,'widget_count')]");
 
